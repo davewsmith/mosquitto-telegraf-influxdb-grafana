@@ -2,7 +2,7 @@
 
 ## Steps
 
-  * MQTT
+  * [done] MQTT
   * Telegraf / InfluxDB
   * Grafana
 
@@ -36,8 +36,11 @@ to publish shows
 
 as expected.
 
-Added authentication for `mqtt/mqtt` and mounted `./mosquitto/conf` read-only (to avoid
-mosquitto chown'ing files and causing git to think there are metadata changes). Now
+Added authentication for `mqtt/mqtt` and mounted `./mosquitto/conf` read-only to avoid
+mosquitto chown'ing files and causing git to think there are metadata changes.
+(See https://github.com/eclipse-mosquitto/mosquitto/issues/3284)
+
+Now
 
     docker exec -it mosquitto mosquitto_sub -u mqtt -P mqtt -t '/#' -v
 
