@@ -49,3 +49,6 @@ to subscribe, and
     docker exec -it mosquitto mosquitto_pub -u mqtt -P mqtt -t /test/topic -m 'new and improved'
 
 to publish works as expected.
+
+Pinned eclipse-mosquitto to 2.0.22 to avoid sudden breakage if they put teeth in their warning
+about password file ownership.
