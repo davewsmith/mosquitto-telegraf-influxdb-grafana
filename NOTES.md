@@ -26,12 +26,23 @@ I'll do that later.
 
     docker exec -it mosquitto mosquitto_sub -t '/#' -v
 
-and
+to subscribe, and
 
     docker exec -it mosquitto mosquitto_pub -t /test/topic -m 'hello there'
 
-shows
+to publish shows
 
     /test/topic hello there
 
 as expected.
+
+Added authentication for `mqtt/mqtt` and mounted `./mosquitto/conf` read-only (to avoid
+mosquitto chown'ing files and causing git to think there are metadata changes). Now
+
+    docker exec -it mosquitto mosquitto_sub -u mqtt -P mqtt -t '/#' -v
+
+to subscribe, and
+
+    docker exec -it mosquitto mosquitto_pub -u mqtt -P mqtt -t /test/topic -m 'new and improved'
+
+to publish works as expected.
