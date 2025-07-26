@@ -63,3 +63,33 @@ https://community.influxdata.com/t/ti-stack-with-docker-compose/19337/6 has an a
 that looks worth trying.
 
 And, some futzing later, that seems to work. Next up is to hook in Telegraf.
+
+With a `telegraf/telegraf.conf` of
+
+```
+[[inputs.mqtt_consumer]]
+    servers = ["tcp://mqtt:1883"]
+    username = "mqtt"
+    password = "mqtt"
+    topics = [
+        "/#"
+    ]
+    topic_tag = "topic"
+    
+[[outputs.file]]
+    files = ["stdout"]
+    data_format = "influx"
+```
+
+```
+docker exec -it mosquitto mosquitto_pub -u mqtt -P mqtt -t /test/topic -m 'new,improved=1,better=2 foo=47'    
+````
+
+produces
+
+```
+telegraf   | new,better=2,host=5f5d76101b28,improved=1,topic=/test/topic foo=47 1753555707869446473
+```
+
+That was simple. Now to hook it up to influxdb.
+
