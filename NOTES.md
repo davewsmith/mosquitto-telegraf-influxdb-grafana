@@ -82,13 +82,13 @@ With a `telegraf/telegraf.conf` of
 ```
 
 ```
-docker exec -it mosquitto mosquitto_pub -u mqtt -P mqtt -t /test/topic -m 'new,improved=1,better=2 foo=47'    
+docker exec -it mosquitto mosquitto_pub -u mqtt -P mqtt -t /test/topic -m 'mymeasure myvalue=42'
 ````
 
-produces
+logs
 
 ```
-telegraf   | new,better=2,host=5f5d76101b28,improved=1,topic=/test/topic foo=47 1753555707869446473
+telegraf   | mymeasure,host=5f5d76101b28,topic=/test/topic myvalue=42 1753556442926473549
 ```
 
 That was simple. Now to hook it up to influxdb.
