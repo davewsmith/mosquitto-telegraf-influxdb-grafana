@@ -52,3 +52,14 @@ to publish works as expected.
 
 Pinned eclipse-mosquitto to 2.0.22 to avoid sudden breakage if they put teeth in their warning
 about password file ownership.
+
+## InfluxDB / Telegraf
+
+The nuisance part here, at least with InfluxDB2, is that you need to run `influx` once to
+create the token that Telgraf needs to talk to InfluxDB. There's a bunch of advice that's
+implicitly based on the older v1 influx.
+
+https://community.influxdata.com/t/ti-stack-with-docker-compose/19337/6 has an approach
+that looks worth trying.
+
+And, some futzing later, that seems to work. Next up is to hook in Telegraf.
