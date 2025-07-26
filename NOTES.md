@@ -93,3 +93,5 @@ telegraf   | mymeasure,host=5f5d76101b28,topic=/test/topic myvalue=42 1753556442
 
 That was simple. Now to hook it up to influxdb.
 
+When it comes up, getting data from Tasmota converted to influx format is discussed in
+https://community.influxdata.com/t/help-parsing-an-mqtt-message-from-a-tasmota-device/30485/6
