@@ -1,4 +1,5 @@
 services:
+
   mqtt:
     image: eclipse-mosquitto:2.0.22
     container_name: mosquitto
@@ -33,6 +34,10 @@ services:
     container_name: telegraf
     volumes:
       - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    environment:
+      - INFLUXDB_ORG=${INFLUXDB_ORG}
+      - INFLUXDB_BUCKET=${INFLUXDB_BUCKET}
+      - INFLUXDB_TELEGRAF_TOKEN=${INFLUXDB_TELEGRAF_TOKEN}
 
 volumes:
   mosquitto-data:

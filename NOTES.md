@@ -3,13 +3,16 @@
 ## Steps
 
   * [done] MQTT
-  * [in progress] Telegraf / InfluxDB
-  * Grafana
+  * [done] Telegraf / InfluxDB
+  * [in progress] Grafana
+  * Wire up wxbug to forward temperature reports
 
-### Loose Ends
+## Loose Ends
 
   * Go over the warnings logged when then stack starts
   * Manage secrets as secrets
+  * When it comes up, getting data from Tasmota converted to influx format is discussed in
+    https://community.influxdata.com/t/help-parsing-an-mqtt-message-from-a-tasmota-device/30485/6
 
 ## MQTT
 
@@ -110,5 +113,8 @@ telegraf   | mymeasure,host=5f5d76101b28,topic=/test/topic myvalue=42 1753556442
 
 That was simple. Now to hook it up to InfluxDB.
 
-When it comes up, getting data from Tasmota converted to influx format is discussed in
-https://community.influxdata.com/t/help-parsing-an-mqtt-message-from-a-tasmota-device/30485/6
+That was easy. Verified the data is arriving by using the InfluxDB UI (http://localhost:8086) and poking at the bucket.
+
+## Grafana
+
+I bet I need another token from InfluxDB...
