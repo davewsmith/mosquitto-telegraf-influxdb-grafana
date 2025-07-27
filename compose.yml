@@ -39,7 +39,20 @@ services:
       - INFLUXDB_BUCKET=${INFLUXDB_BUCKET}
       - INFLUXDB_TELEGRAF_TOKEN=${INFLUXDB_TELEGRAF_TOKEN}
 
+  grafana:
+    depends_on:
+      - influxdb
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - 3000:3000
+    volumes:
+      - grafana-storage:/var/lib/grafana
+    environment:
+      - GF_DEBUG_LEVEL=debug
+
 volumes:
   mosquitto-data:
   influxdb-storage:
   influxdb-config:
+  grafana-storage:
