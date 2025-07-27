@@ -28,16 +28,22 @@ echo "Getting $INFLUXDB_BUCKET bucket id"
 bucket_id=$(docker exec -it influxdb influx bucket list | grep "$INFLUXDB_BUCKET" | awk '{print $1}')
 echo "bucket_id = " $bucket_id
 echo ""
-echo "creating user"
-docker exec -it influxdb influx user create -n telegraf -p TODO-replace-me-with-an-env-var -o home
+echo "Creating users"
+docker exec -it influxdb influx user create -n telegraf -p TODO-replace-me-with-an-env-var -o ${INFLUXDB_ORG}
+docker exec -it influxdb influx user create -n grafana  -p TODO-replace-me-with-an-env-var -o ${INFLUXDB_ORG}
 echo ""
-echo "auth for user"
-docker exec -it influxdb influx auth create -u telegraf -d telegraf_token -o home --write-bucket $bucket_id
+echo "Generating auth tokens"
+docker exec -it influxdb influx auth create -u telegraf -d telegraf_token -o ${INFLUXDB_ORG} --write-bucket $bucket_id
+docker exec -it influxdb influx auth create -u grafana  -d grafana_token  -o ${INFLUXDB_ORG} --read-buckets
 echo ""
-echo "extrating token"
-token=$(docker exec -it influxdb influx auth list | grep telegraf_token | awk '{print $3}')
+echo "Extracting auth tokens"
+telegraf_token=$(docker exec -it influxdb influx auth list | grep telegraf_token | awk '{print $3}')
+grafana_token=$(docker exec -it influxdb influx auth list | grep grafana_token | awk '{print $3}')
 echo ""
+echo "Adding auth tokens to .env"
 sed -i '/INFLUXDB_TELEGRAF_TOKEN/d' .env
-echo INFLUXDB_TELEGRAF_TOKEN=$token >> .env
+echo INFLUXDB_TELEGRAF_TOKEN=$telegraf_token >> .env
+sed -i '/INFLUXDB_GRAFANA_TOKEN/d' .env
+echo INFLUXDB_GRAFANA_TOKEN=$grafana_token >> .env
 
 docker compose down influxdb
