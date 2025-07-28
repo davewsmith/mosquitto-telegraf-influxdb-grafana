@@ -136,3 +136,6 @@ environment variables, which keeps it from requiring a password change on initia
 (Chrome does complain about an insecure password, as it probably should.)
 
 Now to decide whether to provision an initial dashboard, or write up instructions and call it good enough.
+
+Oddly surprised that none of the examples I found when researching this used any sort of health check on InfluxDB,
+but then none of them attempted to provision Grafana with an InfluxDB datasource.
