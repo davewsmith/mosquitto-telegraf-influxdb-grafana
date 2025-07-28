@@ -25,6 +25,11 @@ services:
       - DOCKER_INFLUXDB_INIT_PASSWORD=${INFLUXDB_ADMIN_PASSWORD}
       - DOCKER_INFLUXDB_INIT_ORG=${INFLUXDB_ORG}
       - DOCKER_INFLUXDB_INIT_BUCKET=${INFLUXDB_BUCKET}
+    healthcheck:
+      test: ['CMD-SHELL', 'curl --output /dev/null --silent --head --fail http://influxdb:8086/']
+      interval: 3s
+      retries: 10
+      start_period: 5s
 
   telegraf:
     depends_on:
@@ -41,15 +46,22 @@ services:
 
   grafana:
     depends_on:
-      - influxdb
+      influxdb:
+        condition: service_healthy
     image: grafana/grafana:latest
     container_name: grafana
     ports:
       - 3000:3000
     volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning
       - grafana-storage:/var/lib/grafana
     environment:
       - GF_DEBUG_LEVEL=debug
+      - GF_SECURITY_ADMIN_USER=grafana
+      - GF_SECURITY_ADMIN_PASSWORD=grafana
+      - INFLUXDB_ORG=${INFLUXDB_ORG}
+      - INFLUXDB_BUCKET=${INFLUXDB_BUCKET}
+      - INFLUXDB_GRAFANA_TOKEN=${INFLUXDB_GRAFANA_TOKEN}
 
 volumes:
   mosquitto-data:

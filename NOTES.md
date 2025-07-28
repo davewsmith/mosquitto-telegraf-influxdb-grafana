@@ -117,7 +117,7 @@ That was easy. Verified the data is arriving by using the InfluxDB UI (http://lo
 
 ## Grafana
 
-I bet I need another token from InfluxDB... Yup. Added that `bootstrap.sh`.
+I bet I need another token from InfluxDB... Yup. Added that to `bootstrap.sh`.
 
 Easy part is done; Grafana starts up on http://localhost:3000/ (admin/admin)
 then asks for a new password (but will reuse admin).
@@ -127,5 +127,10 @@ Now to sort out how to provision Grafana from volume binds. Maybe useful:
   * https://medium.com/swlh/easy-grafana-and-docker-compose-setup-d0f6f9fcec13 might be useful.
   * https://github.com/annea-ai/grafana-infrastructure/blob/master/grafana/Dockerfile provides some hints.
 
+Done. Set up a datasource with the necessary InfluxDB token.
+Added a health check on InfluxDB so that Grafana didn't try to access it prematurely.
 
+Secrets are still a bit of a mess. Gave Grafana admin creds (grafana/grafana) via
+environment variables, which keeps it from requiring a password change on initial access.
+(Chrome does complain about an insecure password, as it probably should.)
 
