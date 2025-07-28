@@ -11,8 +11,9 @@
 
   * Go over the warnings logged when then stack starts
   * Manage secrets as secrets
-  * When it comes up, getting data from Tasmota converted to influx format is discussed in
-    https://community.influxdata.com/t/help-parsing-an-mqtt-message-from-a-tasmota-device/30485/6
+
+When it comes up, getting data from Tasmota converted to influx format is discussed in
+https://community.influxdata.com/t/help-parsing-an-mqtt-message-from-a-tasmota-device/30485/6
 
 ## MQTT
 
@@ -134,3 +135,4 @@ Secrets are still a bit of a mess. Gave Grafana admin creds (grafana/grafana) vi
 environment variables, which keeps it from requiring a password change on initial access.
 (Chrome does complain about an insecure password, as it probably should.)
 
+Now to decide whether to provision an initial dashboard, or write up instructions and call it good enough.
