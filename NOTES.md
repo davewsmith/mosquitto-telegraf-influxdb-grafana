@@ -129,7 +129,7 @@ Now to sort out how to provision Grafana from volume binds. Maybe useful:
   * https://github.com/annea-ai/grafana-infrastructure/blob/master/grafana/Dockerfile provides some hints.
 
 Done. Set up a datasource with the necessary InfluxDB token.
-Added a health check on InfluxDB so that Grafana didn't try to access it prematurely.
+Added a health check on InfluxDB so that Grafana didn't throw up its hands in dispair when InfluxDB wasn't ready yet.
 
 Secrets are still a bit of a mess. Gave Grafana admin creds (grafana/grafana) via
 environment variables, which keeps it from requiring a password change on initial access.
