@@ -29,7 +29,7 @@ To clean up after experiments, or after changing `.env` significantly,
     docker system prune
     ./unbootstrap.sh  # to delete volumes
 
-To inject some simple dsample data into the mix
+To inject some simple sample data into the mix
 
     cd injector
     python3 -m venv venv
