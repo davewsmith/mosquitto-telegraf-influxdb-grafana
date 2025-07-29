@@ -158,3 +158,9 @@ how to write directly to InfluxDB from Python. Maybe not of direct interest here
 correct tranformation of a JSON structure into line format.
 
 https://grafana.com/docs/grafana/latest/datasources/influxdb/query-editor/ shows a Flux example.
+
+Gemini actually provides a reasonable summary of the InfluxDB hierarchy:
+
+> In essence, data is organized into buckets, which contain measurements. Each point within a measurement is defined by its timestamp, a set of tags (for metadata and indexing), and a set of fields (for the actual data values).
+
+Where tags and fields are key-value pairs.
