@@ -4,13 +4,15 @@
 
   * [done] MQTT
   * [done] Telegraf / InfluxDB
-  * [in progress] Grafana
+  * [done for now] Grafana
+  * Script to inject sample data
   * Wire up wxbug to forward temperature reports
 
 ## Loose Ends
 
-  * Go over the warnings logged when then stack starts
+  * Go over the warnings logged when the stack starts
   * Manage secrets as secrets
+  * Maybe a canned dashboard?
 
 When it comes up, getting data from Tasmota converted to influx format is discussed in
 https://community.influxdata.com/t/help-parsing-an-mqtt-message-from-a-tasmota-device/30485/6
@@ -139,3 +141,18 @@ Now to decide whether to provision an initial dashboard, or write up instruction
 
 Oddly surprised that none of the examples I found when researching this used any sort of health check on InfluxDB,
 but then none of them attempted to provision Grafana with an InfluxDB datasource.
+
+## Interlude for cleanup and reflection
+
+Just noticed a "Flux is currently in Beta" notice when looking at the Grafana datasource.
+https://grafana.com/docs/grafana/latest/datasources/influxdb/configure-influxdb-data-source/
+shows an example of provisioning an InfluxQL datasource.
+
+Most of what I've seen has Telegraf marshalling to 'influx' format. But Tasmota like to send JSON,
+so maybe an experiment is in order to see how JSON lands in InfluxDB.
+
+https://www.influxdata.com/blog/import-json-data-influxdb-using-python-go-javascript-client-libraries/ shows
+how to write directly to InfluxDB from Python. Maybe not of direct interest here, but it shows the
+correct tranformation of a JSON structure into line format.
+
+https://grafana.com/docs/grafana/latest/datasources/influxdb/query-editor/ shows a Flux example.
