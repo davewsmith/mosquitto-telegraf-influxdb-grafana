@@ -1,6 +1,6 @@
-# mqtt-grafana
+# mosquitto-telegraf-influxdb-grafana
 
-A basic MQTT/Telegraf/InfluxDB/Grafana stack.
+A basic MQTT (Mosquitto) to TIG (Telegraf/InfluxDB/Grafana) stack.
 
 Also **A WORK IN PROGRESS**, so use very much at your own risk.
 
@@ -8,7 +8,7 @@ Nothing particularly novel here.
 This replaces someone else's stack that I thought was getting overly complicated.
 And it's an excuse to kick the moving parts around.
 
-## Setup
+## Setup for development
 
 Copy `env.template` to `.env` and edit it as you see fit.
 
@@ -20,8 +20,12 @@ to set up InfluxDB and generate access tokens, then
 
     docker compose up
 
-To bring the stack up.
+To bring the stack up. http://localhost:3000/ will access Grafana (creds are grafana/grafana).
+A datasource is configured, but no dashboards yet.
 
-> http://localhost:3000/
+To clean up after experiments, or after changing `.env` significantly,
 
-brings up Grafana (log in with grafana/grafana). A datasource is configured, but no dashboards yet.
+    docker compose down
+    docker system prune
+    ./unbootstrap.sh  # to delete volumes
+
