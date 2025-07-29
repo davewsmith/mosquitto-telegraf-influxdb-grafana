@@ -57,8 +57,8 @@ services:
       - grafana-storage:/var/lib/grafana
     environment:
       - GF_DEBUG_LEVEL=debug
-      - GF_SECURITY_ADMIN_USER=grafana
-      - GF_SECURITY_ADMIN_PASSWORD=grafana
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_ADMIN_USER}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD}
       - INFLUXDB_ORG=${INFLUXDB_ORG}
       - INFLUXDB_BUCKET=${INFLUXDB_BUCKET}
       - INFLUXDB_GRAFANA_TOKEN=${INFLUXDB_GRAFANA_TOKEN}
