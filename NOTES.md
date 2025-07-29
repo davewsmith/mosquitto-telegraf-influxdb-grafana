@@ -5,19 +5,16 @@
   * [done] MQTT
   * [done] Telegraf / InfluxDB
   * [done for now] Grafana
-  * Script to inject sample data
+  * [done] Script to inject sample data
+  * [next]Telegraf: Tasmota JSON to influx line
   * Wire up wxbug to forward temperature reports
 
 ## Loose Ends
 
+  * rethink topics and bucket names
   * Go over the warnings logged when the stack starts
   * Manage secrets as secrets
   * Maybe a canned dashboard?
-
-When it comes up, getting data from Tasmota converted to influx format is discussed in
-https://community.influxdata.com/t/help-parsing-an-mqtt-message-from-a-tasmota-device/30485/6
-
-Also https://www.blakecarpenter.dev/using-tasmota-smart-plugs-with-telegraf/
 
 ## MQTT
 
@@ -164,3 +161,16 @@ Gemini actually provides a reasonable summary of the InfluxDB hierarchy:
 > In essence, data is organized into buckets, which contain measurements. Each point within a measurement is defined by its timestamp, a set of tags (for metadata and indexing), and a set of fields (for the actual data values).
 
 Where tags and fields are key-value pairs.
+
+## Inject sample data
+
+Followed the publish example on https://pypi.org/project/paho-mqtt/
+
+Had to set the window period to '1s' to keep Influx from aggregating.
+
+## Telgraf: Tasmota JSON to Influx line
+
+References/guidance:
+
+  * https://community.influxdata.com/t/help-parsing-an-mqtt-message-from-a-tasmota-device/30485/6
+  * https://www.blakecarpenter.dev/using-tasmota-smart-plugs-with-telegraf/
