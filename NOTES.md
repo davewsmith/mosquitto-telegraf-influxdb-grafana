@@ -17,6 +17,8 @@
 When it comes up, getting data from Tasmota converted to influx format is discussed in
 https://community.influxdata.com/t/help-parsing-an-mqtt-message-from-a-tasmota-device/30485/6
 
+Also https://www.blakecarpenter.dev/using-tasmota-smart-plugs-with-telegraf/
+
 ## MQTT
 
 Wrote a simple compose.yml that uses `eclipse-mosquitto:latest` with default configuration.
