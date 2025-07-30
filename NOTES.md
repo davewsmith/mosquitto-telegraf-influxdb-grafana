@@ -6,7 +6,7 @@
   * [done] Telegraf / InfluxDB
   * [done for now] Grafana
   * [done] Script to inject sample data
-  * [next]Telegraf: Tasmota JSON to influx line
+  * [next]Telegraf: Tasmota JSON to influx line protocol
   * Wire up wxbug to forward temperature reports
 
 ## Loose Ends
@@ -168,9 +168,11 @@ Followed the publish example on https://pypi.org/project/paho-mqtt/
 
 Had to set the window period to '1s' to keep Influx from aggregating.
 
-## Telgraf: Tasmota JSON to Influx line
+## Telgraf: Tasmota JSON to Influx line protocol
 
 References/guidance:
 
+  * https://www.influxdata.com/blog/how-parse-json-telegraf-influxdb-cloud/
+  * https://www.hivemq.com/blog/mqtt-essentials-part-5-mqtt-topics-best-practices/
   * https://community.influxdata.com/t/help-parsing-an-mqtt-message-from-a-tasmota-device/30485/6
   * https://www.blakecarpenter.dev/using-tasmota-smart-plugs-with-telegraf/
